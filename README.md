@@ -1,40 +1,52 @@
-Role Name
+Tomcat For LumisXP
 =========
+[![Build Status](https://travis-ci.org/jeduoliveira/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/jeduoliveira/ansible-role-tomcat)
 
-A brief description of the role goes here.
+Install Tomcat For LumisXP  
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+none.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+    tomcat_name: tomcat
+    tomcat_directory: /opt
+
+    tomcat_user:  tomcat
+    tomcat_group: tomcat
+    tomcat_xms: 512M
+    tomcat_xmx: 1024M
+
+    tomcat_maxThreads_http: 6
+    tomcat_maxThreads_ajp: 80
+    tomcat_valve_internalProxies: "192\\.168\\.\\d{1,3}\\.\\d{1,3}"
+
+    tomcat_heapdump_enabled: false
+    tomcat_heapdump_directory: /opt/heapdump/
+    tomcat_g1gc_enabled: false
+
+    tomcat_gc_log_enabled: false
+    tomcat_gc_log_directory: /opt/logs/gc
+    tomcat_gc_log_file: "{{ tomcat_gc_log_directory }}/gc.log"
+
+    tomcat_jmx_enabled: false
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+jeduoliveira.zulu_openjdk
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: roles/ansible-role-tomcat, x: 42 }
+        - role: jeduoliveira.tomcat
+          tomcat_version: 9
+          tomcat_release: 9.0.19
 
 License
 -------
@@ -44,5 +56,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+This role was created in 2019 by [Jorge Eduardo](https://www.linkedin.com/in/jorgeeduardo/)
