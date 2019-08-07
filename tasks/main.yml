@@ -1,0 +1,27 @@
+---
+
+- name: Tomcat | Ensure tomcat group
+  group:
+    name: "{{ tomcat_group }}"
+    state: present
+
+- name: Tomcat | Ensure tomcat user
+  user:
+    name: "{{ tomcat_user }}"
+    state: present
+    group: "{{ tomcat_group }}"
+    createhome: no
+    system: yes
+
+- name: Define tomcat version.
+  set_fact:
+    tomcat_version: "{{ __tomcat_version }}"
+  when: tomcat_version is not defined
+
+- name: Define tomcat release.
+  set_fact:
+    tomcat_release: "{{ __tomcat_release }}"
+  when: tomcat_release is not defined
+
+
+- include_tasks: install.yml

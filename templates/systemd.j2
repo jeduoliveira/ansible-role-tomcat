@@ -1,0 +1,11 @@
+[Service]
+Type=forking
+
+ExecStart={{ tomcat_directory }}/{{ tomcat_name }}/bin/startup.sh
+ExecStop=/bin/kill -15 $MAINPID
+
+User={{ tomcat_user }}
+Group={{ tomcat_group }}
+
+[Install]
+WantedBy=multi-user.target
