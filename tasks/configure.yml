@@ -1,0 +1,51 @@
+---
+
+- name: create catalina localhost diretory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    recurse: yes
+    mode: 0755
+  with_items: "{{ tomcat_directories }}"
+
+- name: add tomcat server.xml
+  template:
+    src: "server.xml.j2"
+    dest: "{{ tomcat_directory }}/{{ tomcat_name }}/conf/server.xml"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group  }}"
+    mode: 0755
+  notify:
+    - restart tomcat
+
+- name: add tomcat setenv.sh
+  template:
+    src: "setenv.sh.j2"
+    dest: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/setenv.sh"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group  }}"
+    mode: 0777
+  notify:
+    - restart tomcat
+
+- name: configure systemd service
+  template:
+    src: systemd.j2
+    dest: "/etc/systemd/system/{{ tomcat_name }}.service"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group  }}"
+    mode: 0777
+  notify:
+    - systemctl daemon-reload
+
+- name: start and enable tomcat instance
+  service:
+    name: "{{ tomcat_name }}"
+    state: started
+    enabled: yes
+
+- name: wait for tomcat to start
+  wait_for:
+    port: "8080"

@@ -2,7 +2,7 @@
 tomcat_name: tomcat
 tomcat_directory: /opt
 
-tomcat_user:  tomcat
+tomcat_user: tomcat
 tomcat_group: tomcat
 tomcat_xms: 512M
 tomcat_xmx: 1024M

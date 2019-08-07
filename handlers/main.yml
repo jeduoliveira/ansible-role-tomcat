@@ -2,7 +2,7 @@
 - name: systemctl daemon-reload
   systemd:
     daemon_reload: yes
-  
+
 - name: restart tomcat
   service:
     name: "{{ tomcat_name }}"
