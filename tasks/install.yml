@@ -10,12 +10,12 @@
 - name: download tomcat source
   get_url:
     url: "{{ tomcat_unarchive_url }}"
-    dest: "{{ tomcat_directory }}/{{ tomcat_name }}/tomcat.tar.gz"
+    dest: "/tmp/tomcat.tar.gz"
     mode: 0440
 
 - name: Unarchive tomcat package
   unarchive:
-    src: "{{ tomcat_directory }}/{{ tomcat_name }}/tomcat.tar.gz"
+    src: "/tmp/tomcat.tar.gz"
     dest: "{{ tomcat_directory }}/{{ tomcat_name }}"
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
@@ -23,8 +23,3 @@
     remote_src: yes
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ tomcat_name }}/bin"
-
-- name: Delete tomcat package
-  file:
-    path: "{{ tomcat_directory }}/{{ tomcat_name }}/tomcat.tar.gz"
-    state: absent
