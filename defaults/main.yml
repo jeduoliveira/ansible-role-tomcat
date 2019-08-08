@@ -7,7 +7,6 @@ tomcat_group: tomcat
 tomcat_xms: 512M
 tomcat_xmx: 1024M
 
-
 tomcat_maxThreads_http: 6
 tomcat_maxThreads_ajp: 80
 tomcat_valve_internalProxies: "192\\.168\\.\\d{1,3}\\.\\d{1,3}"
