@@ -4,7 +4,7 @@ UMASK=0022
 
 CATALINA_OPTS="$CATALINA_OPTS -Xms{{ tomcat_xms }} -Xmx{{ tomcat_xmx }}"
 
-{% if tomcat_jmx_enabled == true %}
+{% if tomcat_jmx_enabled is defined %}
 CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote 
 -Dcom.sun.management.jmxremote.port=9000 
 -Dcom.sun.management.jmxremote.local.only=false 
@@ -15,7 +15,7 @@ CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote
 -Dsun.net.http.allowRestrictedHeaders=true"
 {% endif %}
 
-{% if tomcat_g1gc_enabled == true %}
+{% if tomcat_g1gc_enabled is defined %}
 CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC  
 -XX:+UnlockExperimentalVMOptions 
 -XX:G1NewSizePercent=25 
@@ -23,12 +23,12 @@ CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC
 -XX:MaxGCPauseMillis=50"
 {% endif %}
 
-{% if tomcat_heapdump_enabled == true%}
+{% if tomcat_heapdump_enabled is defined%}
 CATALINA_OPTS="$CATALINA_OPTS -XX:+HeapDumpOnOutOfMemoryError 
 -XX:HeapDumpPath={{ tomcat_heapdump_directory }}"
 {% endif %}
 
-{% if tomcat_gc_log_enabled == true %}
+{% if tomcat_gc_log_enabled is defined %}
 CATALINA_OPTS="$CATALINA_OPTS -Xloggc:{{ tomcat_gc_log_file }}
 -XX:+PrintGCDetails  
 -XX:+PrintGCDateStamps 
