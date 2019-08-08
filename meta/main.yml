@@ -12,6 +12,7 @@ galaxy_info:
       versions:
         - 7
         - 6
+
   galaxy_tags:
     - java
     - web
