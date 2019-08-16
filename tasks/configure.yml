@@ -29,13 +29,3 @@
     mode: 0777
   notify:
     - restart tomcat
-
-- name: configure systemd service
-  template:
-    src: systemd.j2
-    dest: "/etc/systemd/system/{{ tomcat_name }}.service"
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group  }}"
-    mode: 0777
-  notify:
-    - systemctl daemon-reload
