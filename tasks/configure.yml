@@ -39,9 +39,3 @@
     mode: 0777
   notify:
     - systemctl daemon-reload
-
-- name: start and enable tomcat instance
-  service:
-    name: "{{ tomcat_name }}"
-    state: started
-    enabled: yes
