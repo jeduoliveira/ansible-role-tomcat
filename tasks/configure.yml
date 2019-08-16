@@ -45,7 +45,3 @@
     name: "{{ tomcat_name }}"
     state: started
     enabled: yes
-
-- name: wait for tomcat to start
-  wait_for:
-    port: "8080"
