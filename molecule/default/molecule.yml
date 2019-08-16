@@ -30,7 +30,7 @@ test_sequence:
   # - idempotence
   - lint
   - verify
-  
+
 verifier:
   name: testinfra
   lint:

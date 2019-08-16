@@ -29,7 +29,7 @@
     mode: 0777
   notify:
     - restart tomcat
-  
+
 - name: configure systemd service
   template:
     src: systemd.j2
