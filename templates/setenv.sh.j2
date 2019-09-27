@@ -29,12 +29,12 @@ CATALINA_OPTS="$CATALINA_OPTS -XX:+HeapDumpOnOutOfMemoryError
 {% endif %}
 
 {% if tomcat_gc_log_enabled is defined %}
-CATALINA_OPTS="$CATALINA_OPTS -Xloggc:{{ tomcat_gc_log_file }}
--XX:+PrintGCDetails  
--XX:+PrintGCDateStamps 
--XX:+PrintGCCause 
--XX:+PrintTenuringDistribution 
--XX:+UseGCLogFileRotation 
--XX:NumberOfGCLogFiles=10 
--XX:GCLogFileSize=5M"
+#CATALINA_OPTS="$CATALINA_OPTS -Xloggc:{{ tomcat_gc_log_file }}
+#-XX:+PrintGCDetails  
+#-XX:+PrintGCDateStamps 
+#-XX:+PrintGCCause 
+#-XX:+PrintTenuringDistribution 
+#-XX:+UseGCLogFileRotation 
+#-XX:NumberOfGCLogFiles=10 
+#-XX:GCLogFileSize=5M"
 {% endif %}
