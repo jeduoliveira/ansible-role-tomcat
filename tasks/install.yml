@@ -26,11 +26,8 @@
 
 - name: "Install apr"
   yum:
-    name: 
-      - apr-devel 
+    name:
+      - apr-devel
       - openssl-devel
       - gcc
     state: present
-    
-
-

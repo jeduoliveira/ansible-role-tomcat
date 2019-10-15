@@ -44,10 +44,10 @@
   with_items:
     - ./configure --with-java-home="{{ java_home }}"
     - make
-    - make install 
+    - make install
   changed_when: false
-  tags: 
-    - apr  
+  tags:
+    - apr
 
 - name: configure systemd service
   template:
