@@ -30,6 +30,24 @@
   notify:
     - restart tomcat
 
+- name: Unarchive tomcat apr
+  unarchive:
+    src: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native.tar.gz"
+    dest: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/"
+    mode: 0755
+    remote_src: yes
+
+- name: Execute the script
+  command: "{{ item }}"
+  args:
+    chdir: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native-1.2.21-src/native"
+  with_items:
+    - ./configure --with-java-home="{{ java_home }}"
+    - make
+    - make install  
+  tags: 
+    - apr  
+
 - name: configure systemd service
   template:
     src: systemd.j2

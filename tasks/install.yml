@@ -23,3 +23,13 @@
     remote_src: yes
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ tomcat_name }}/bin"
+
+- name: "Install apr"
+  yum:
+    name: 
+      - apr-devel 
+      - openssl-devel
+    state: present
+    
+
+
