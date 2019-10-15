@@ -24,5 +24,10 @@
   when: tomcat_release is not defined
 
 
+- name: Define tomcat native release.
+  set_fact:
+    tomcat_native_release: "{{ __tomcat_native_release }}"
+  when: tomcat_native_release is not defined
+
 - include_tasks: install.yml
 - include_tasks: configure.yml

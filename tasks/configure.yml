@@ -40,11 +40,12 @@
 - name: Execute the script
   command: "{{ item }}"
   args:
-    chdir: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native-1.2.21-src/native"
+    chdir: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native-{{ tomcat_native_release }}-src/native"
   with_items:
     - ./configure --with-java-home="{{ java_home }}"
     - make
-    - make install  
+    - make install 
+  changed_when: false
   tags: 
     - apr  
 

@@ -26,3 +26,5 @@ tomcat_directories:
   - "{{ tomcat_directory }}/{{ tomcat_name }}/conf/Catalina/localhost"
   - "{{ tomcat_heapdump_directory }}"
   - "{{ tomcat_gc_log_directory }}"
+
+tomcat_jvm_id: lumis1
