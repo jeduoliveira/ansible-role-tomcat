@@ -3,4 +3,6 @@ __tomcat_version: 9
 __tomcat_release: 9.0.19
 __tomcat_native_release: 1.2.23
 
+__java_home: /usr/java/default
+
 tomcat_unarchive_url: "https://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version }}/v{{ tomcat_release }}/bin/apache-tomcat-{{ tomcat_release }}.tar.gz"

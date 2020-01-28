@@ -28,3 +28,5 @@ tomcat_directories:
   - "{{ tomcat_gc_log_directory }}"
 
 tomcat_jvm_id: lumis1
+
+tomcat_jmxremote_hostname: 127.0.0.1
