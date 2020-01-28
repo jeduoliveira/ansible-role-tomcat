@@ -50,7 +50,7 @@
   args:
     chdir: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native-{{ tomcat_native_release }}-src/native"
   with_items:
-    - ./configure --with-java-home="{{ java_home }}"  
+    - ./configure --with-java-home="{{ java_home }}"
     - make install
   changed_when: false
   tags:
