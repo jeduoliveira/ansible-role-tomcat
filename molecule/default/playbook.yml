@@ -8,7 +8,6 @@
     zulu_jdk_version: jdk11.0.7
     java_home: /usr/lib/jvm/zulu-{{ zulu_version }}
 
-    
   roles:
     - role: jeduoliveira.zulu_openjdk
     - role: jeduoliveira.tomcat
