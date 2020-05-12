@@ -12,8 +12,8 @@
     name: "{{ tomcat_user }}"
     state: present
     group: "{{ tomcat_group }}"
-    createhome: no
-    system: yes
+    createhome: false
+    system: true
   tags:
     - tomcat
 
@@ -26,7 +26,7 @@
 
 - name: Define java home
   set_fact:
-    tomcat_version: "{{ __java_home }}"
+    java_home: "{{ __java_home }}"
   when: java_home is not defined
   tags:
     - tomcat

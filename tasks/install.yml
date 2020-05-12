@@ -24,7 +24,7 @@
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
     mode: 0755
-    remote_src: yes
+    remote_src: true
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ tomcat_name }}/bin"
   tags:

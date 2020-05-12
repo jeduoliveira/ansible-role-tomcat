@@ -1,26 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  become: yes
-
-  vars:
-    java_home: /usr/java/default
-    ansible_python_interpreter: /usr/bin/python
+  become: true
 
   roles:
-    - role: ansiblebit.oracle-java
-      oracle_java_use_defaults: no
-      oracle_java_dir_source: '/usr/local/src'
-      oracle_java_download_timeout: 60
-      oracle_java_rpm_filename: 'jdk-8u221-linux-x64.rpm'
-      oracle_java_home: '/usr/java/default'
-      oracle_java_os_supported: yes
-      oracle_java_rpm_url: 'https://lumisportal-repo.s3.amazonaws.com/jdk-8u221-linux-x64.rpm'
-      oracle_java_rpm_validate_certs: yes
-      oracle_java_set_as_default: no
-      oracle_java_version_string: 1.8.0_221
-
-    - role: ansible-role-tomcat
-      tomcat_version: 9
-      tomcat_release: 9.0.27
-      tomcat_native_release: 1.2.23
+    - role: jeduoliveira.zulu_openjdk
+    - role: jeduoliveira.tomcat
