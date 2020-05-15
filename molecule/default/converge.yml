@@ -2,11 +2,15 @@
 - name: Converge
   hosts: all
   become: true
+
   vars:
     zulu_version: 11
     zulu_release: 11.39.15
     zulu_jdk_version: jdk11.0.7
     java_home: /usr/lib/jvm/zulu-{{ zulu_version }}
+
+  environment:
+    JAVA_HOME: "{{ java_home }}"
 
   roles:
     - role: jeduoliveira.zulu_openjdk

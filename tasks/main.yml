@@ -4,50 +4,34 @@
   group:
     name: "{{ tomcat_group }}"
     state: present
-  tags:
-    - tomcat
 
 - name: Tomcat | Ensure tomcat user
   user:
     name: "{{ tomcat_user }}"
     state: present
     group: "{{ tomcat_group }}"
-    createhome: no
-    system: yes
-  tags:
-    - tomcat
+    createhome: false
+    system: true
 
 - name: Define tomcat version.
   set_fact:
     tomcat_version: "{{ __tomcat_version }}"
   when: tomcat_version is not defined
-  tags:
-    - tomcat
 
 - name: Define java home
   set_fact:
-    tomcat_version: "{{ __java_home }}"
+    java_home: "{{ __java_home }}"
   when: java_home is not defined
-  tags:
-    - tomcat
 
 - name: Define tomcat release.
   set_fact:
     tomcat_release: "{{ __tomcat_release }}"
   when: tomcat_release is not defined
-  tags:
-    - tomcat
 
 - name: Define tomcat native release.
   set_fact:
     tomcat_native_release: "{{ __tomcat_native_release }}"
   when: tomcat_native_release is not defined
-  tags:
-    - tomcat
 
 - include_tasks: install.yml
-  tags:
-    - tomcat
 - include_tasks: configure.yml
-  tags:
-    - tomcat
