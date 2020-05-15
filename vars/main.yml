@@ -1,6 +1,6 @@
 ---
 __tomcat_version: 9
-__tomcat_release: 9.0.29
+__tomcat_release: 9.0.30
 __tomcat_native_release: 1.2.23
 
 __java_home: /usr/java/default

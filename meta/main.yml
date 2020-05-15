@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - jeduoliveira.zulu_openjdk
+  - ansible-role-zulu-openjdk
 
 galaxy_info:
   role_name: tomcat

@@ -1,10 +1,10 @@
 ---
 
-- name: set JAVA_HOME if configured.
-  template:
-    src: java_home.sh.j2
-    dest: /etc/profile.d/java_home.sh
-    mode: 0755
+- name: set java home as environment variable
+  blockinfile:
+    insertafter: EOF
+    path: /etc/environment
+    block: "export JAVA_HOME={{ java_home }}"
   when: java_home is defined and java_home
 
 - name: create catalina localhost diretory
@@ -16,8 +16,6 @@
     recurse: true
     mode: 0755
   with_items: "{{ tomcat_directories }}"
-  tags:
-    - tomcat
 
 - name: add tomcat server.xml
   template:
@@ -28,8 +26,6 @@
     mode: 0755
   notify:
     - restart tomcat
-  tags:
-    - tomcat
 
 - name: add tomcat setenv.sh
   template:
@@ -40,29 +36,6 @@
     mode: 0777
   notify:
     - restart tomcat
-  tags:
-    - tomcat
-
-- name: Unarchive tomcat apr
-  unarchive:
-    src: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native.tar.gz"
-    dest: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/"
-    mode: 0755
-    remote_src: true
-  tags:
-    - tomcat
-
-- name: Execute the script
-  command: "{{ item }}"
-  args:
-    chdir: "{{ tomcat_directory }}/{{ tomcat_name }}/bin/tomcat-native-{{ tomcat_native_release }}-src/native"
-  with_items:
-    - ./configure --with-java-home="{{ java_home }}"
-    - make install
-  changed_when: false
-  tags:
-    - apr
-    - tomcat
 
 - name: configure systemd service
   template:
@@ -74,13 +47,9 @@
   notify:
     - systemctl daemon-reload
     - restart tomcat
-  tags:
-    - tomcat
 
 - name: start and enable tomcat instance
   service:
     name: "{{ tomcat_name }}"
     state: started
     enabled: true
-  tags:
-    - tomcat

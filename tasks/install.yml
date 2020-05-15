@@ -6,16 +6,12 @@
     state: directory
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
-  tags:
-    - tomcat
 
 - name: download tomcat source
   get_url:
     url: "{{ tomcat_unarchive_url }}"
     dest: "/tmp/tomcat.tar.gz"
     mode: 0440
-  tags:
-    - tomcat
 
 - name: Unarchive tomcat package
   unarchive:
@@ -27,15 +23,3 @@
     remote_src: true
     extra_opts: "--strip-components=1"
     creates: "{{ tomcat_directory }}/{{ tomcat_name }}/bin"
-  tags:
-    - tomcat
-
-- name: "Install apr"
-  yum:
-    name:
-      - apr-devel
-      - openssl-devel
-      - gcc
-    state: present
-  tags:
-    - tomcat
